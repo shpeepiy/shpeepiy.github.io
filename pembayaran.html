@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tagihan Pembayaran</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #f5f5f5; color: #333; padding-bottom: 80px; }
+    .countdown-banner {
+      background: #ff4400;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    .container { padding: 16px; }
+    .info-tagihan {
+      font-size: 16px;
+      color: #666;
+      margin: 12px 0;
+    }
+    h2 { font-size: 18px; margin: 20px 0 10px; }
+    .order-card {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .store-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .product {
+      display: flex;
+      margin-top: 10px;
+      gap: 10px;
+    }
+    .product img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .details { flex-grow: 1; }
+    .details .name { font-weight: bold; font-size: 14px; }
+    .details .variant { font-size: 12px; color: #888; margin: 4px 0; }
+    .details .price { font-weight: bold; font-size: 14px; text-align: right; color: #111; }
+    .total-row {
+      font-weight: bold;
+      font-size: 14px;
+      text-align: right;
+      margin-top: 6px;
+    }
+    .summary {
+      background: white;
+      padding: 12px;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #eee;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
+    }
+    .btn-bayar {
+      background: #ff4400;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+      width: 300px;
+      display: none;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .popup.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .popup h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .popup .channel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff0e8;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .popup .channel span {
+      background: #ff4400;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 999;
+      display: none;
+    }
+    .popup-overlay.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown-banner">
+    Waktu terakhir pembayaran     <span id="countdown">Hari Jam Menit Detik</span>
+  </div>  <div class="container">
+   <h2>PENGINGAT PEMBAYARAN</h2> <div class="info-tagihan">Kepada : <div style="color:blue">@Aziiezah Izzar,  </div>
+Kami informasikan bahwa pembayaran ShopeePayLater Anda paling lambat dilakukan pada tanggal 25 Juli 2025, pukul 12.00 WIB.  
+Mohon segera melakukan pembayaran sebelum jatuh tempo untuk menghindari sanksi atau denda. Terima kasih atas perhatian dan kerjasamanya. </div><h2>PESANAN</h2>
+
+<div class="order-card">
+  <div class="store-head">
+    <div>POCO Official Store</div>
+    <div style="color:#ff4400">Selesai</div>
+  </div>
+  <div class="product">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROMt9h46XwAn3fUjxsF1T7-RhH_p3eq9Wl06scXuFIu-3jQjjtVfMxOT06&s=10" alt="poco">
+    <div class="details">
+      <div class="name">POCO C71 (4+4GB/128GB) Performa Canggih</div>
+      <div class="variant">Gold, 4/128 GB</div>
+      <div class="price">Rp1.100.000</div>
+    </div>
+  </div>
+  <div class="total-row">Total 1 produk: Rp1.100.000</div>
+</div>
+
+<div class="order-card">
+  <div class="store-head">
+    <div>PLN</div>
+    <div style="color:#ff4400">Selesai</div>
+  </div>
+  <div class="product">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0NqoUmOXCgpYuLxd0vwLR4wLEzM7DqIS1bisVWUsvpnt0TMthvyAE_HY&s=10" alt="poco">
+    <div class="details">
+      <div class="name">TOKEN LISTRIK PLN</div>
+      <div class="variant">Rp.200.000</div>
+      <div class="price">Rp202.500</div>
+    </div>
+  </div>
+  <div class="total-row">Total 1 produk: Rp202.500</div>
+</div>
+
+  </div>  <div class="summary">
+    <div>
+      <div style="color:#777">Total: 2 Barang</div>
+      <div style="font-weight:bold; color:#000">Rp1.302.500</div>
+    </div>
+    <button class="btn-bayar" onclick="showPopup()">bayar sekarang</button>
+  </div>  <div class="popup-overlay" id="overlay" onclick="hidePopup()"></div>
+  <div class="popup" id="popup">
+    <h3>Pembayaran</h3>
+    <p>Total : 1.302.500</p>
+    <p>Pembayaran lewat (Klik salah satu)</p>
+    <div class="channel" onclick="kirimWA('cash')"><span>Cash</span></div>
+    <div class="channel" onclick="kirimWA('bank')"> <span>Tf Bank</span> + Admin Rp.2.500</div>
+    <div class="channel" onclick="kirimWA('ewallet')"> <span>E wallet</span> + Admin Rp.1.500</div>
+  </div>  <script>
+    const countdownElement = document.getElementById("countdown");
+    const target = new Date("2025-07-25T12:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        countdownElement.innerText = "00hari 00jam 00menit 00detik";
+        return;
+      }
+      const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+      const minutes = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+      const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+      countdownElement.innerText = `${days}hari ${hours}jam ${minutes}menit ${seconds}detik`;
+    }
+
+    function showPopup() {
+      document.getElementById("popup").classList.add("active");
+      document.getElementById("overlay").classList.add("active");
+    }
+
+    function hidePopup() {
+      document.getElementById("popup").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    function kirimWA(metode) {
+      let message = "";
+      if (metode === "cash") {
+        message = "Melakukan pembayaran Cash\nNominal: Rp.1.302.500";
+      } else if (metode === "bank") {
+        message = "Tf Bank akan dilakukan, Mohon kirimkan Nomor Rekening Bank (BRI/Seabank)\nNominal: Rp.1.305.000";
+      } else if (metode === "ewallet") {
+        message = "Pembayaran Via E-Wallet, Mohon kirimkan QR atau Nomor E-Wallet (Shopee,Dana,Ovo,Gopay,)\nNominal: Rp.1.304.000";
+      }
+      const phone = "6285156863975";
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script></body>
+</html>
