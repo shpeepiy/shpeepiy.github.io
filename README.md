@@ -1,2 +1,0 @@
-# shpeepiy.github.io
-tes
